@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="main_button_go">Go</string>
+    <string name="main_search">Enter The City Please</string>
+    <string name="main_logo">Main Logo</string>
+    <string name="day1">Today</string>
+</resources>
