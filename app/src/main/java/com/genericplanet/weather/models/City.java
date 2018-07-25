@@ -1,5 +1,7 @@
 package com.genericplanet.weather.models;
 
+import com.android.volley.RequestQueue;
+
 public class City {
 
     private String name,weather_state,abbr,date;
