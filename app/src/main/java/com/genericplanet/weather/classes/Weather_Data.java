@@ -1,49 +1,49 @@
-package com.genericplanet.weather.models;
+package com.genericplanet.weather.classes;
 
-import com.android.volley.RequestQueue;
-
-public class City {
+public class Weather_Data {
 
     private String name,weather_state,abbr,date;
     private int weoid,temperature,humidity,windspeed,visibility;
+    public Weather_Data(){
 
-    public City setName(String name){
+    }
+    public Weather_Data setName(String name){
         this.name=name;
         return this;
     }
-    public City setWeather_state(String state){
+    public Weather_Data setWeather_state(String state){
         weather_state=state;
         return this;
     }
-    public City setAbbr(String abbri)
+    public Weather_Data setAbbr(String abbri)
     {
         abbr=abbri;
         return this;
     }
 
-    public City setDate(String dte) {
+    public Weather_Data setDate(String dte) {
         date=dte;
         return this;
     }
 
-    public City setWeoid(int id){
+    public Weather_Data setWeoid(int id){
         weoid=id;
         return this;
     }
-    public City setTemperature(int temp) {
+    public Weather_Data setTemperature(int temp) {
         temperature=temp;
         return this;
     }
 
-    public City setHumidity(int humidity){
+    public Weather_Data setHumidity(int humidity){
         this.humidity=humidity;
         return this;
     }
-    public City setWindspeed(int windspeed){
+    public Weather_Data setWindspeed(int windspeed){
         this.windspeed=windspeed;
         return this;
     }
-    public City setVisibility(int visibility) {
+    public Weather_Data setVisibility(int visibility) {
         this.visibility=visibility;
         return this;
     }
