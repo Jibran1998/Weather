@@ -1,34 +1,32 @@
 package com.genericplanet.weather.classes;
 
-import com.genericplanet.weather.activities.Weather_update;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Weather_Data {
+public class WeatherData {
 
     private String name,weather_state,abbr,date;
     private int weoid,temperature,humidity,windspeed,visibility;
-    public Weather_Data(){
+    public WeatherData(){
 
     }
-    public Weather_Data setName(String name){
+    public WeatherData setName(String name){
         this.name=name;
         return this;
     }
-    public Weather_Data setWeather_state(String state){
+    public WeatherData setWeather_state(String state){
         weather_state=state;
         return this;
     }
-    public Weather_Data setAbbr(String abbri)
+    public WeatherData setAbbr(String abbri)
     {
         abbr=abbri;
         return this;
     }
 
-    public Weather_Data setDate(String dte) {
+    public WeatherData setDate(String dte) {
 
         SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
 
@@ -43,24 +41,24 @@ public class Weather_Data {
         return this;
     }
 
-    public Weather_Data setWeoid(int id){
+    public WeatherData setWeoid(int id){
         weoid=id;
         return this;
     }
-    public Weather_Data setTemperature(int temp) {
+    public WeatherData setTemperature(int temp) {
         temperature=temp;
         return this;
     }
 
-    public Weather_Data setHumidity(int humidity){
+    public WeatherData setHumidity(int humidity){
         this.humidity=humidity;
         return this;
     }
-    public Weather_Data setWindspeed(int windspeed){
+    public WeatherData setWindspeed(int windspeed){
         this.windspeed=windspeed;
         return this;
     }
-    public Weather_Data setVisibility(int visibility) {
+    public WeatherData setVisibility(int visibility) {
         this.visibility=visibility;
         return this;
     }
@@ -102,9 +100,9 @@ public class Weather_Data {
         return windspeed;
     }
 
-    public Weather_Data clone()
+    public WeatherData clone()
     {
-       Weather_Data data=new Weather_Data();
+       WeatherData data=new WeatherData();
        return data;
     }
 }

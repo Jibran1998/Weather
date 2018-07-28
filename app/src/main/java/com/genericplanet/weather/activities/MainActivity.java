@@ -1,26 +1,30 @@
 package com.genericplanet.weather.activities;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.genericplanet.weather.R;
-import com.genericplanet.weather.classes.Data_loader;
-import com.genericplanet.weather.classes.Weather_Data;
+import com.genericplanet.weather.classes.DataLoader;
+import com.genericplanet.weather.classes.WeatherData;
 
-public class MainActivity extends AppCompatActivity implements Data_loader.Listener {
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements DataLoader.Listener {
 
     EditText search_city;
     Button main_search_button,main_proceed,main_back;
     TextView cityname;
-    Weather_Data data[]=new Weather_Data[2];
+
+    ArrayList<WeatherData> data;
+    DataLoader loader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,14 +34,14 @@ public class MainActivity extends AppCompatActivity implements Data_loader.Liste
         cityname=findViewById(R.id.main_result);
         main_proceed=findViewById(R.id.main_proceed);
         main_back=findViewById(R.id.main_back);
-        Data_loader loader=new Data_loader();
+        loader=new DataLoader();
         loader.setListener(this);
         main_search_button.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 hidekeyboard(search_city);
-                Data_loader.isthere(MainActivity.this,search_city.getText().toString());
+                loader.isThere(MainActivity.this,search_city.getText().toString());
             }
 
         });
@@ -51,8 +55,8 @@ public class MainActivity extends AppCompatActivity implements Data_loader.Liste
     public void onresponse() {
         search_city.setVisibility(View.GONE);
         main_search_button.setVisibility(View.INVISIBLE);
-        data= Data_loader.getdata();
-        cityname.setText(data[0].getName());
+        data= loader.getdata();
+        cityname.setText(data.get(0).getName());
         cityname.setVisibility(View.VISIBLE);
         main_proceed.setVisibility(View.VISIBLE);
         main_back.setVisibility(View.VISIBLE);
@@ -60,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements Data_loader.Liste
         main_proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,Weather_update.class);
+                Intent intent=new Intent(MainActivity.this,WeatherUpdate.class);
                 intent.putExtra("city_name",search_city.getText().toString());
                 startActivity(intent);
             }

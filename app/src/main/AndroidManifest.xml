@@ -16,16 +16,16 @@
             android:name=".activities.MainActivity"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
             android:inputType="textCapSentences">
-
-        </activity>
-        <activity android:name=".activities.Weather_update" />
-        <activity android:name=".activities.Details"></activity>
-        <activity android:name=".activities.test">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activities.WeatherUpdate" />
+        <activity android:name=".activities.Details"></activity>
+        <activity android:name=".activities.test">
+
         </activity>
     </application>
 

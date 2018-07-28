@@ -15,11 +15,14 @@ import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
-public class Data_loader {
-    static  Weather_Data data[]=new Weather_Data[2];
-    static Weather_Data dat=new Weather_Data();
-    public interface Listener{
+public class DataLoader {
+
+    ArrayList<WeatherData> weatherData = new ArrayList<>();
+
+
+   public interface Listener{
         void onresponse();
         void onerror();
         void oninterneterror();
@@ -28,7 +31,7 @@ public class Data_loader {
     public void setListener(Listener listener){
         this.listener=listener;
     }
-    public static void setdata(String url,Context context){
+    public void setdata(String url,Context context){
         RequestQueue queue= Volley.newRequestQueue(context);
        JsonObjectRequest request=new JsonObjectRequest(url, null, new Response.Listener<JSONObject>() {
            @Override
@@ -45,12 +48,12 @@ public class Data_loader {
                        int humidity=day.getInt("humidity");
                        int visibility=day.getInt("visibility");
                        int windspeed=day.getInt("wind_speed");
-                       dat=new Weather_Data();
+                       WeatherData dat=new WeatherData();
                        dat.setDate(date).setName(response.getString("title")).setHumidity(humidity).setTemperature(temp)
                                .setVisibility(visibility).setWeather_state(weather_state).setWindspeed(windspeed);
-//                      listener.onerror();
+                       weatherData.add(dat);
                  }
-
+                    listener.onresponse();
                } catch (JSONException e) {
                    listener.onerror();
                }
@@ -63,11 +66,11 @@ public class Data_loader {
        });
        queue.add(request);
     };
-    public static Weather_Data[] getdata()
+    public  ArrayList<WeatherData> getdata()
     {
-        return data;
+        return weatherData;
     }
-public static void isthere(final Context context, final String term){
+public void isThere(final Context context, final String term){
     RequestQueue queue= Volley.newRequestQueue(context);
 
     String url="https://www.metaweather.com/api/location/search/?query="+term;

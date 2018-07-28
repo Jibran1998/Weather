@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Weather_update"
+    tools:context=".activities.WeatherUpdate"
     tools:layout_editor_absoluteY="81dp">
 
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/weather_update_today_data"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:layout_marginEnd="8dp"
@@ -17,15 +17,18 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:orientation="vertical"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/linearlayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="visible">
 
 
             <LinearLayout
@@ -43,7 +46,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Today"
-                    android:textSize="24sp" />
+                    android:textSize="24sp"
+                    android:visibility="visible" />
 
                 <View
                     android:id="@+id/view"
@@ -56,6 +60,7 @@
                     android:layout_height="wrap_content"
                     android:text="TextView"
                     android:textStyle="bold"
+                    android:visibility="visible"
                     tools:text="Today" />
             </LinearLayout>
 
@@ -96,17 +101,18 @@
     </LinearLayout>
 
     <View
-        android:id="@+id/divider2"
+        android:id="@+id/weather_main_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="?android:attr/listDivider"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/weather_update_today_data" />
 
     <LinearLayout
-        android:id="@+id/linearlayout1"
+        android:id="@+id/weather_layout_otherdays"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -115,11 +121,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:layout_constraintTop_toBottomOf="@+id/weather_main_divider"
         app:layout_constraintVertical_bias="0.01999998">
 
         <LinearLayout
@@ -403,5 +410,21 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/weather_progress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
