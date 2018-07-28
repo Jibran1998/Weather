@@ -13,11 +13,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class Data_loader {
     static  Weather_Data data[]=new Weather_Data[2];
     static Weather_Data dat=new Weather_Data();
     public interface Listener{
         void onresponse();
+        void onerror();
+        void oninterneterror();
     }
     static Listener listener;
     public void setListener(Listener listener){
@@ -40,15 +45,14 @@ public class Data_loader {
                        int humidity=day.getInt("humidity");
                        int visibility=day.getInt("visibility");
                        int windspeed=day.getInt("wind_speed");
-                       dat.setDate(date);
-                       dat.setName(response.getString("title")).setHumidity(humidity).setTemperature(temp)
+                       dat=new Weather_Data();
+                       dat.setDate(date).setName(response.getString("title")).setHumidity(humidity).setTemperature(temp)
                                .setVisibility(visibility).setWeather_state(weather_state).setWindspeed(windspeed);
-                       data[i]=dat;
+//                      listener.onerror();
                  }
-                   listener.onresponse();
 
                } catch (JSONException e) {
-                   e.printStackTrace();
+                   listener.onerror();
                }
            }
        }, new Response.ErrorListener() {
@@ -67,6 +71,14 @@ public static void isthere(final Context context, final String term){
     RequestQueue queue= Volley.newRequestQueue(context);
 
     String url="https://www.metaweather.com/api/location/search/?query="+term;
+
+    try {
+        url=new URL(url).toString();
+    } catch (MalformedURLException e) {
+        e.printStackTrace();
+    }
+    url=url.replace(" ","+");
+
     JsonArrayRequest request=new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
         @Override
         public void onResponse(JSONArray response) {
@@ -76,18 +88,17 @@ public static void isthere(final Context context, final String term){
                 if(response.getJSONObject(0).has("title")==true)
                 {
                 String url ="https://www.metaweather.com/api/location/"+response.getJSONObject(0).getString("woeid");
-
                 setdata(url,context);
-
                 }
+
             } catch (JSONException e) {
-                e.printStackTrace();
+                listener.onerror();
             }
         }
     }, new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
-//         listener.onresponse();
+            listener.oninterneterror();
         }
     });
     queue.add(request);

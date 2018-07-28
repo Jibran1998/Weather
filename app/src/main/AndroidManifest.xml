@@ -14,7 +14,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.MainActivity"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
+            android:inputType="textCapSentences">
 
         </activity>
         <activity android:name=".activities.Weather_update" />
