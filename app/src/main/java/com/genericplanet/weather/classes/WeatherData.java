@@ -1,5 +1,7 @@
 package com.genericplanet.weather.classes;
 
+import com.genericplanet.weather.activities.WeatherUpdate;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,13 +9,22 @@ import java.util.Date;
 
 public class WeatherData {
 
-    private String name,weather_state,abbr,date;
-    private int weoid,temperature,humidity,windspeed,visibility;
+    private String name,weather_state,abbr,date,imageurl;
+    private int weoid,temperature,humidity,windspeed,visibility,pressure;
+
     public WeatherData(){
 
     }
     public WeatherData setName(String name){
         this.name=name;
+        return this;
+    }
+    public WeatherData setPressure(int pressure){
+        this.pressure=pressure;
+        return this;
+    }
+    public WeatherData setimageurl(String url){
+        this.imageurl=url;
         return this;
     }
     public WeatherData setWeather_state(String state){
@@ -71,38 +82,30 @@ public class WeatherData {
 
         return date;
     }
-
+    public String getimagerurl(){
+        return imageurl;
+    }
     public String getAbbr() {
         return abbr;
     }
-
     public String getWeather_state() {
         return weather_state;
     }
-
     public int getHumidity() {
         return humidity;
     }
-
     public int getTemperature() {
         return temperature;
     }
-
     public int getVisibility() {
         return visibility;
     }
-
     public int getWeoid() {
         return weoid;
     }
-
     public int getWindspeed() {
         return windspeed;
     }
+    public int getPressure(){ return pressure; }
 
-    public WeatherData clone()
-    {
-       WeatherData data=new WeatherData();
-       return data;
-    }
 }

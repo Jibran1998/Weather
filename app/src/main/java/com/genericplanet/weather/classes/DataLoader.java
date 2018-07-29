@@ -26,6 +26,7 @@ public class DataLoader {
         void onresponse();
         void onerror();
         void oninterneterror();
+        void debugger(String text);
     }
     static Listener listener;
     public void setListener(Listener listener){
@@ -48,9 +49,13 @@ public class DataLoader {
                        int humidity=day.getInt("humidity");
                        int visibility=day.getInt("visibility");
                        int windspeed=day.getInt("wind_speed");
-                       WeatherData dat=new WeatherData();
+                       int pressure=day.getInt("air_pressure");
+                       String abr=day.getString("weather_state_abbr");
+                       String imageurl="https://www.metaweather.com/static/img/weather/png/"+abr+".png";
+                      WeatherData dat=new WeatherData();
                        dat.setDate(date).setName(response.getString("title")).setHumidity(humidity).setTemperature(temp)
-                               .setVisibility(visibility).setWeather_state(weather_state).setWindspeed(windspeed);
+                               .setVisibility(visibility).setWeather_state(weather_state).setWindspeed(windspeed).setimageurl(imageurl)
+                       .setPressure(pressure);
                        weatherData.add(dat);
                  }
                     listener.onresponse();

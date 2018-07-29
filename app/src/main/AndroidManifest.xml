@@ -23,7 +23,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.WeatherUpdate" />
-        <activity android:name=".activities.Details"></activity>
+        <activity android:name=".activities.Details">
+
+        </activity>
         <activity android:name=".activities.test">
 
         </activity>

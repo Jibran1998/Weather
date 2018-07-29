@@ -57,4 +57,9 @@ public class test extends AppCompatActivity implements DataLoader.Listener {
     public void oninterneterror() {
 
     }
+
+    @Override
+    public void debugger(String text) {
+
+    }
 }
